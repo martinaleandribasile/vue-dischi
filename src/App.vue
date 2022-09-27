@@ -1,9 +1,9 @@
 <template>
   <div id="app">
+    <HeaderComponent/>
+    <CdMain @adminsel="setSelectValue" :CdArray=filteredCd />
     <LoadingMess v-if="loading"/>
     <ErrorMess v-if="error" :e='errorstring'/>
-    <HeaderComponent/>
-    <CdMain :CdArray=CdArray />
   </div>
 </template>
 
@@ -20,15 +20,39 @@ export default {
     HeaderComponent,
     CdMain,
     LoadingMess,
-    ErrorMess
+    ErrorMess,
+    
   },
   data(){
     return{
       CdArray:[],
       loading:true,
       error:false,
-      errorstring:''
+      errorstring:'',
+      choose:'All'
     } 
+  },
+  methods:{
+    setSelectValue(value){
+      console.log('set on')
+      this.choose=value
+      console.log(this.choose)
+    }
+  },
+  computed:{
+    filteredCd(){
+      let cdFiltered=[]
+      console.log(this.choose , 'choose')
+      this.CdArray.forEach((element)=>{
+        if(element.genre===this.choose){
+          cdFiltered.push(element)
+        }
+        else if(this.choose === "All"){
+          cdFiltered = this.CdArray
+        }
+      })
+      return cdFiltered
+    }
   },
   created(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
@@ -36,7 +60,7 @@ export default {
         if(status===200){
           this.CdArray=data.response
           this.loading=false
-        }
+        }console.log(data.response)
     })
     .catch(e=>{
       this.loading=false

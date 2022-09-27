@@ -1,13 +1,17 @@
 <template>
   <div class="container">
-    <div class="CdList" >
-        <CdCard v-for="cd in CdArray" :key="cd.title" :cd='cd'/>
+    <NavbarComponent/>
+    <div class="container-list">
+        <div class="CdList" >
+            <CdCard v-for="cd in CdArray" :key="cd.title" :cd='cd'/>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
     import CdCard from '@/components/CardCd.vue'
+    import NavbarComponent from "@/components/NavbarCd.vue"
 export default {
     name:'CdMain',
     data(){
@@ -15,19 +19,25 @@ export default {
             
         }
     },
+    
     props:{
         CdArray:Array,
     },
     components:{
-        CdCard
+        CdCard,
+        NavbarComponent
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
-.container{
-    height: calc(100% - 10%);
+    .container{
+        height: calc(100% - 10%);
+        background-color: #1e2d3b;
+    }
+.container-list{
+    height: calc(100% - 20%);
     background-color: #1e2d3b;
     display: flex;
     align-items: center;

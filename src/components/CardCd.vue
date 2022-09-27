@@ -1,6 +1,6 @@
 <template>
 <div class="cardCd">
-    <div class="imgbox"><img :src="cd.poster" alt=""></div>
+    <div class="imgbox"><img :src="cd.poster" alt="" @error="defaultimg"></div>
     <h2>{{cd.title}}</h2>
     <h3>{{cd.author}} <h3>{{cd.year}}</h3> </h3>
     
@@ -8,11 +8,18 @@
 </template>
 
 <script>
+    import imgLogo from '@/assets/img/logo.png'
 export default {
     name:'CdCard',
 props:{
     cd:Object
-}
+},
+methods:{
+    defaultimg(e){
+        e.target.src = imgLogo
+    }
+},
+
 }
 </script>
 
