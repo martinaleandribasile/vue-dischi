@@ -1,5 +1,5 @@
 <template>
-<div class="cardCd">
+<div class="cardCd" :class="array.length >= 5 ? 'widthAll' : 'widthstandard'" >
     <div class="imgbox"><img :src="cd.poster" alt="" @error="defaultimg"></div>
     <h2>{{cd.title}}</h2>
     <h3>{{cd.author}} <h3>{{cd.year}}</h3> </h3>
@@ -12,7 +12,8 @@
 export default {
     name:'CdCard',
 props:{
-    cd:Object
+    cd:Object,
+    array:Array
 },
 methods:{
     defaultimg(e){
@@ -24,8 +25,14 @@ methods:{
 </script>
 
 <style lang="scss" scoped>
+    .widthAll{
+        width: calc( 100% / 5 - 40px);
+    }
+    .widthstandard{
+        width: 300px;
+        height: 500px;
+    }
         .cardCd{
-            width: calc( 100% / 5 - 40px);
             height: 430px;
             margin: 20px;
             padding: 15px;

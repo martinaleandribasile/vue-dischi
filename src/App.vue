@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderComponent/>
-    <CdMain @adminsel="setSelectValue" :CdArray=filteredCd />
+    <HeaderComponent @generSel="setSelectValue"/>
+    <CdMain :CdArray=filteredCd />
     <LoadingMess v-if="loading"/>
     <ErrorMess v-if="error" :e='errorstring'/>
   </div>

@@ -1,11 +1,9 @@
 <template>
-  <div class="container">
     <div class="container-list">
         <div class="CdList" >
-            <CdCard v-for="cd in CdArray" :key="cd.title" :cd='cd'/>
+            <CdCard :array="CdArray" v-for="cd in CdArray" :key="cd.title" :cd='cd'/>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -23,13 +21,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-   
-    .container{
-        height: calc(100% - 10%);
-        background-color: #1e2d3b;
+    .nowidth{
+        width: auto;
     }
     .container-list{
-        height: calc(100% - 20%);
+        height: calc(100% - 188px);
         background-color: #1e2d3b;
         display: flex;
         align-items: center;
