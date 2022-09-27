@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent @generSel="setSelectValue"/>
+    <HeaderComponent @generSel="setSelectValue" @authorSel='setSelectAuthorVal'/>
     <CdMain :CdArray=filteredCd />
     <LoadingMess v-if="loading"/>
     <ErrorMess v-if="error" :e='errorstring'/>
@@ -29,26 +29,29 @@ export default {
       loading:true,
       error:false,
       errorstring:'',
-      choose:'All'
+      chooseGener:'All',
+      chooseAuthor:'All'
     } 
   },
   methods:{
     setSelectValue(value){
-      console.log('set on')
-      this.choose=value
-      console.log(this.choose)
+      this.chooseGener=value
+    },
+    setSelectAuthorVal(value){
+      this.chooseAuthor=value
     }
   },
   computed:{
     filteredCd(){
       let cdFiltered=[]
-      console.log(this.choose , 'choose')
       this.CdArray.forEach((element)=>{
-        if(element.genre===this.choose){
+        if(element.genre===this.chooseGener){
           cdFiltered.push(element)
         }
-        else if(this.choose === "All"){
-          cdFiltered = this.CdArray
+        else if(this.chooseAuthor===element.author){
+          cdFiltered.push(element)
+        }else if(this.chooseAuthor==='All' & this.chooseGener==='All'){
+          cdFiltered=this.CdArray
         }
       })
       return cdFiltered

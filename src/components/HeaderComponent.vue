@@ -6,7 +6,7 @@
     <div class="container-sel">
       <div class="selection-container">
           <h3>Filtra per genere</h3>
-          <select name="GenereCd"  @change="onChange($event)">
+          <select name="GenereCd"  @change="changeGender($event)">
               <option value="All">All</option>
               <option value="Jazz">Jazz</option>
               <option value="Metal">Metal</option>
@@ -16,7 +16,7 @@
       </div>
       <div class="selection-container">
           <h3>Filtra per genere</h3>
-          <select name="AuthorCd" id="">
+          <select name="AuthorCd" @change="changeAuthor($event)">
               <option value="All">All</option>
               <option value="Bon Jovi">Bon Jovi</option>
               <option value="Sting">Sting</option>
@@ -39,16 +39,18 @@ export default {
     name: 'HeaderComponent',
     data(){
         return{
-            value:''
+            valuegender:'',
+            valueauthor:''
         }
     },
     methods:{
-    onChange(event){
-        console.log(event)
-        console.log('evento' ,event.target.value)
-        this.value = event.target.value
-        console.log('value' ,this.value)
-        this.$emit('generSel' , this.value)
+    changeGender(event){
+        this.valuegender = event.target.value
+        this.$emit('generSel' , this.valuegender)
+    },
+    changeAuthor(event){
+        this.valueauthor = event.target.value
+        this.$emit('authorSel' , this.valueauthor)
     }
 },
 }
