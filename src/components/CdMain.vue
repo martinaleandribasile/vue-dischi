@@ -34,7 +34,7 @@ export default {
     .CdList{
         display: flex;
         flex-wrap: wrap;
-        width: 85%;
+        max-width: 1800px;
         margin: 0 auto;
     }
 }
