@@ -18,16 +18,7 @@
           <h3>Filtra per genere</h3>
           <select name="AuthorCd" @change="changeAuthor($event)">
               <option value="All">All</option>
-              <option value="Bon Jovi">Bon Jovi</option>
-              <option value="Sting">Sting</option>
-              <option value="Queen">Queen</option>
-              <option value="Steve Gadd Band">Steve Gadd Band</option>
-              <option value="Iron Maiden">Iron Maiden</option>
-              <option value="Eric Clapton">Eric Clapton Maiden</option>
-              <option value="Deep Purple">Deep Purple</option>
-              <option value="Metallica">Metallica</option>
-              <option value="Dave Weckl">Dave Weckl</option>
-              <option value="Michael Jacjson">Michael Jackson</option>
+              <option :value="item" v-for="item in author" :key="item" >{{item}}</option>
           </select>
       </div>
   </div>
@@ -43,6 +34,9 @@ export default {
             valueauthor:''
         }
     },
+   props:{
+    author:Array
+   },
     methods:{
     changeGender(event){
         this.valuegender = event.target.value

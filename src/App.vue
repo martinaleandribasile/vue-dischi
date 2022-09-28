@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent @generSel="setSelectValue" @authorSel='setSelectAuthorVal'/>
+    <HeaderComponent @generSel="setSelectValue" @authorSel='setSelectAuthorVal' :author=authorsArray />
     <CdMain :CdArray=filteredCd />
     <LoadingMess v-if="loading"/>
     <ErrorMess v-if="error" :e='errorstring'/>
@@ -45,6 +45,12 @@ export default {
     filteredCd(){
       let cdFiltered=[]
       this.CdArray.forEach((element)=>{
+        if(this.chooseAuthor!=="All"){
+        this.chooseGener="All"
+        }
+        if(this.chooseGener!=="All"){
+          this.chooseAuthor="All"
+        }
         if(element.genre===this.chooseGener){
           cdFiltered.push(element)
         }
@@ -55,6 +61,15 @@ export default {
         }
       })
       return cdFiltered
+    },
+    authorsArray(){
+      let authorarray=[]
+      this.CdArray.forEach(item =>{
+        if(!authorarray.includes(item.author)){
+          authorarray.push(item.author)
+        }
+      })
+      return authorarray
     }
   },
   created(){
